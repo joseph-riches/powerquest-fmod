@@ -3,7 +3,7 @@
 
 An FMOD Audio extension for PowerQuest that offers useful features for audio events, transitions, and one-shot sound effects.
 
-Accessible through Quest Scripts using ```AudioExt.``` and through other scripts using the static functions from ```SystemFMOD.```
+Accessible through Quest Scripts using ```AudioEx.``` and through other scripts using the static functions from ```SystemFMOD.```
 
 ## Installation
 
