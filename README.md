@@ -9,7 +9,7 @@ Accessible through Quest Scripts using ```AudioExt.``` and through other scripts
 
 Make sure you have installed and configured [FMOD for Unity](https://www.fmod.com/unity) before using this extension.
 
-After downloading and importing the [Unity Package](https://github.com/joseph-riches/powerquest-fmod/raw/master/PowerQuestFMOD.unitypackage), make the following changes to your ```GlobalScript.cs``` file:
+After downloading and importing the [Unity Package](https://github.com/joseph-riches/powerquest-fmod/raw/main/PowerQuestFMOD.unitypackage), make the following changes to your ```GlobalScript.cs``` file:
 
 ```cs
 public void OnGameStart()
@@ -123,7 +123,7 @@ AudioEx.PlayOneShot("event:/SFX/Cave/monster_growl", C.Monster.Position, ("Rever
 
 ### Description
 
-The optional [CreateQuestScriptAutos.js](https://github.com/joseph-riches/powerquest-fmod/raw/master/CreateQuestScriptAutos.js) script for FMOD Studio generates static references for selected events in your FMOD project. This simplifies calls within your PowerQuest project, but keep in mind that the file will need to be regenerated when new events are added in FMOD.
+The optional [CreateQuestScriptAutos.js](https://github.com/joseph-riches/powerquest-fmod/raw/main/CreateQuestScriptAutos.js) script for FMOD Studio generates static references for selected events in your FMOD project. This simplifies calls within your PowerQuest project, but keep in mind that the file will need to be regenerated when new events are added in FMOD.
 
 Here's the generated output, based on the examples above:
 
