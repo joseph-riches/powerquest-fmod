@@ -159,3 +159,10 @@ To use the script, please refer to the FMOD Studio documentation on [Script File
 ![GenerateQuestScriptAutos](https://s9.gifyu.com/images/CreateQuestScriptAutos.gif) 
 
 This will generate a file named ```QuestScriptAutosExtenstion.cs``` in the Scripts folder of the FMOD Studio project's root directory. To use it in Unity, simply import this folder into your Unity project.
+
+
+## Acknowledgements
+
+ - [Organizing FMOD Events with ScriptableObjects](https://alessandrofama.com/tutorials/fmod/unity/scriptableobjects)
+ - [Using PlayOneShot with FMOD Parameters](https://alessandrofama.com/tutorials/fmod/unity/playoneshot-parameters)
+ - [Unity Serializable Scriptable Object Example](https://github.com/bzgeb/SerializableScriptableObject)
