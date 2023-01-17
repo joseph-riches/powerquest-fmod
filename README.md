@@ -3,13 +3,13 @@
 
 An FMOD Audio extension for PowerQuest that offers useful features for audio events, transitions, and one-shot sound effects.
 
-Accessible through Quest Scripts using 'AudioExt.' and through other scripts using the static functions from 'SystemFMOD.'
+Accessible through Quest Scripts using ```AudioExt.``` and through other scripts using the static functions from ```SystemFMOD.```
 
 ## Installation
 
 Make sure you have installed and configured [FMOD for Unity](https://www.fmod.com/unity) before using this extension.
 
-After downloading and importing the [Unity Package](https://github.com/joseph-riches/powerquest-fmod/raw/master/PowerQuestFMOD.unitypackage), make the following changes to your GlobalScript.cs file:
+After downloading and importing the [Unity Package](https://github.com/joseph-riches/powerquest-fmod/raw/master/PowerQuestFMOD.unitypackage), make the following changes to your ```GlobalScript.cs``` file:
 
 ```cs
 public void OnGameStart()
@@ -28,7 +28,7 @@ public void OnPostRestore(int version)
 }
 ```
 
-Then, make the following changes to your PowerQuestSave.cs file:
+Then, make the following changes to your ```PowerQuestSave.cs``` file:
 
 ```cs
 public bool Save(int slot, string description, Texture2D imageOverride = null)
@@ -85,11 +85,11 @@ Using the extension can be broken down into two main parts, room audio (such as 
 
 ### Room Audio Data
 
-If you have set up your RoomAudioData SerializedObjects, and the RoomAudioDataRegistry, then events will be automatically created and managed by the extension.
+The extension will automatically create and manage events if you have set up your RoomAudioData SerializedObjects and RoomAudioDataRegistry.
 
-In OnEnterRoom, the extension will load the RoomAudioData for the current room and stop any events playing that aren't included in that data. Then they system will identify and events that are already in the data, and update the event parameters instead of creating a new event instance. Finally, the system will create and play any remaining events.
+When entering a room, the extension will load the RoomAudioData for that room, stop any events that are not included in the data, update event parameters for events already in the data, and create and play any remaining events.
 
-If you set up your FMOD tracks to transition based on these parameters, this means that you can have smooth music transitions between rooms.
+This allows for smooth music transitions between rooms if your FMOD tracks are set up to transition based on these parameters.
 
 ### Sound Effects
 
@@ -118,3 +118,44 @@ You can optionally include Parameters when calling PlayOneShot, these will be as
 ```cs
 AudioEx.PlayOneShot("event:/SFX/Cave/monster_growl", C.Monster.Position, ("Reverb", 1.50f), ("Pitch", 0.5f));
 ```
+
+## Optional: Static Event References
+
+### Description
+
+The optional [CreateQuestScriptAutos.js](https://github.com/joseph-riches/powerquest-fmod/raw/master/CreateQuestScriptAutos.js) script for FMOD Studio generates static references for selected events in your FMOD project. This simplifies calls within your PowerQuest project, but keep in mind that the file will need to be regenerated when new events are added in FMOD.
+
+Here's the generated output, based on the examples above:
+
+```cs
+namespace PowerScript
+{
+	public static partial class S
+	{
+		public static string EnterDarkCave = "event:/SFX/Forest/enter_dark_cave";
+
+		public static string MonsterScuttle = "event:/SFX/Cave/monster_scuttle";
+
+		public static string MonsterGrowl = "event:/SFX/Cave/monster_growl";
+	}
+}
+```
+
+And this is how that new static ```S.``` class would be used:
+
+
+```cs
+AudioEx.PlayOneShot(S.EnterDarkCave);
+yield return E.Wait(1.0f);
+AudioEx.PlayOneShot(S.MonsterScuttle, C.Monster.Position);
+yield return C.Dave.Say("Did something just move?");
+AudioEx.PlayOneShot(S.MonsterGrowl, C.Monster.Position, ("Reverb", 1.50f), ("Pitch", 0.5f));
+```
+
+### Installation
+
+To use the script, please refer to the FMOD Studio documentation on [Script Files](https://www.fmod.com/docs/2.00/studio/scripting-terminal-reference.html#script-files) for the proper placement of the script. Then, select the events you wish to include (ensuring not to select any folders) and navigate to Scripts > Unity > GenerateQuestScriptAutos.
+
+![GenerateQuestScriptAutos](https://s9.gifyu.com/images/CreateQuestScriptAutos.gif) 
+
+This will generate a file named ```QuestScriptAutosExtenstion.cs``` in the Scripts folder of the FMOD Studio project's root directory. To use it in Unity, simply import this folder into your Unity project.
