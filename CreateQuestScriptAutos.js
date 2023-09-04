@@ -45,7 +45,7 @@ studio.menu.addMenuItem({
 
         var projectPath = studio.project.filePath;
         projectPath = projectPath.substr(0, projectPath.lastIndexOf("/"));
-        var filePath = projectPath + "/Scripts/" + "QuestScriptAutosExtenstion.cs";
+        var filePath = projectPath + "/Scripts/" + "QuestScriptAutosExtension.cs";
 		var file = studio.system.getFile(filePath);
 
 		file.open(studio.system.openMode.WriteOnly);
